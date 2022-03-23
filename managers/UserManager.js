@@ -1,8 +1,8 @@
-const Manager = require("./manager");
-const Schema = require("./schemas/UserSchema");
+const Manager = require("./Manager");
+const schema = require("./schemas/userSchema");
 
 module.exports = class UserManager extends Manager {
-  async create() {
-    const user = await Schema.create({});
+  static async postUsers(user) {
+    return await create(schema, user);
   }
 };
