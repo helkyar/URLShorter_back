@@ -3,6 +3,8 @@ const schema = require("./schemas/userSchema");
 
 module.exports = class UserManager extends Manager {
   static async postUsers(user) {
-    return await create(schema, user);
+    // (!) Correct hereditary check
+    console.log(this.querys.save);
+    return await executeQuery(schema, user, this.querys.save);
   }
 };
