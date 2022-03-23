@@ -1,10 +1,14 @@
+const mongoose = require("mongoose");
+
 module.exports = class Manager {
+  //(!) Change this object to private variables
   static clientParams = {
-    user: process.env.DBUSER,
     host: process.env.DBHOST,
     name: process.env.DBNAME,
-    pswd: process.env.DBPSWD,
     port: process.env.DBPORT,
   };
-  static async queryExec() {}
+  static async queryExec() {
+    const { host, port, name } = this.clientParams;
+    mongoose.connect(`mongodb://${host}:${port}/${name}`);
+  }
 };
