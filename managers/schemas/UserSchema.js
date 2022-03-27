@@ -1,19 +1,18 @@
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   name: String,
-  password: String,
-
-  email: {
-    type: String,
-    required: true,
-    lowercase: true,
-    unique: true,
-  },
-  createdAt: {
-    type: Date,
-    default: () => Date.now(),
-  },
-  updatedAt: Date,
+  // password: String,
+  // email: {
+  //   type: String,
+  //   required: true,
+  //   lowercase: true,
+  //   unique: true,
+  // },
+  // createdAt: {
+  //   type: Date,
+  //   default: () => Date.now(),
+  // },
+  // updatedAt: Date,
   //   age: {
   //     type: Number,
   //     min: 1,
@@ -26,4 +25,6 @@ const userSchema = new mongoose.Schema({
   //   bestFriend: mongoose.SchemaTypes.ObjectId,
   //   hobbies: [String],
 });
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("pathofglory", userSchema);
+// const collection = async () => await Model.createCollection();
+// collection();
