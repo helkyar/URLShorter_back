@@ -9,7 +9,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(require("express").json());
 
-console.log("base");
 app.use("/", require("./routes"));
 
 app.listen(PORT, () => {
