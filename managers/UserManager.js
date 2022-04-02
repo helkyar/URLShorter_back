@@ -5,4 +5,7 @@ module.exports = class UserManager extends Manager {
   static async postUsers(user) {
     return await this.executeQuery(schema, user, this.querys.save);
   }
+  static async find(user) {
+    return await this.executeQuery(schema, user, this.querys.find);
+  }
 };

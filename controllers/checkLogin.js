@@ -4,7 +4,7 @@ const UserManager = require("../managers/UserManager");
 
 async function checkLoginController(req, res) {
   console.log("login");
-  const user = await UserManager.postUsers({ user: "juan" });
+  // const user = await UserManager.find({ user: "juan" });
   const token = jwt.sign(
     {
       id: req.body,
