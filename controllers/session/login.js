@@ -1,9 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const UserManager = require("../managers/UserManager");
+const UserManager = require(`../${process.env.MANAGER}/UserManager`);
 
 async function checkLogin(req, res) {
-  console.log("login");
   const credentials = req.body.login;
   // Incorrect login___________________________________
   // (!) check status 200
