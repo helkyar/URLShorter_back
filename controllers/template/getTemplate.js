@@ -2,7 +2,8 @@ const TemplateManager = require(`../../${process.env.MANAGER}/TemplateManager`);
 
 async function getTemplate(req, res) {
   console.log("Template controller get");
-  const data = req.body;
+  const data = req.params;
+  console.log(req.params);
   //(!) Validation
   const template = await TemplateManager.find(data);
   //(!) Universal manager -> model response

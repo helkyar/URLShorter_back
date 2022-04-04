@@ -10,7 +10,7 @@ class UserManager extends Manager {
     getAllUsers: `SELECT * FROM ${this.table}`,
     getUser: `SELECT * FROM ${this.table} WHERE id=$1`,
     getUserlogin: `SELECT * FROM ${this.table} WHERE username=$1`,
-    postUser: `INSERT INTO users (${this.columns}) VALUES 
+    postUser: `INSERT INTO ${this.table} (${this.columns}) VALUES 
                 (${this.columnsVariables()}) RETURNING *;`,
     patchUser: `UPDATE ${this.table} SET ${this.updateQuery()}
                   WHERE id = $${this.columns.length + 1} RETURNING *;`,
