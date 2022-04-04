@@ -1,18 +1,17 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const UserManager = require(`../${process.env.MANAGER}/UserManager`);
+const UserManager = require(`../../${process.env.MANAGER}/UserManager`);
 
 async function checkLogin(req, res) {
   const credentials = req.body.login;
   // Incorrect login___________________________________
-  // (!) check status 200
   if (!credentials) {
-    res.status(200).json({ error: "nice try" });
+    res.status(400).json({ error: "nice try" });
   }
 
   // Search user_______________________________________
-  // const user = await UserManager.find(credentials);
-  if (!user[0]) {
+  const user = await UserManager.find(credentials);
+  if (!user && !user[0]) {
     return res.status(400).json({ error: "credenciales incorrectas" });
   }
 
@@ -30,8 +29,7 @@ async function checkLogin(req, res) {
     },
     process.env.TOKEN_SECRET
   );
-  console.log("user", user);
-  res.status(200).json({ token, login, id });
+  res.status(200).json({ token, username, id });
 }
 
 module.exports = checkLogin;

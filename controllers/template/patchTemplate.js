@@ -1,0 +1,13 @@
+const TemplateManager = require(`../../${process.env.MANAGER}/TemplateManager`);
+
+async function patchTemplate(req, res) {
+  console.log("Template controller patch");
+  const data = req.body;
+  //(!) Validation
+  const template = await TemplateManager.update(data);
+  //(!) Universal manager -> model response
+  template !== null
+    ? res.status(200).json(template[0].getObject())
+    : res.status(400).json({ error: "Wrong format" });
+}
+module.exports = patchTemplate;
