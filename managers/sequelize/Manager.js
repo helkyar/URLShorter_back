@@ -38,6 +38,7 @@ module.exports = class Manager {
       .catch((error) => {
         console.log("Query Error: ", query, error);
         return null;
-      });
+      })
+      .finally(() => sequelize.close());
   }
 };
