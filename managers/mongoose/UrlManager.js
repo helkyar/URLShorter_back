@@ -1,13 +1,15 @@
 const Manager = require("./Manager");
-const schema = require("./schemas/userSchema");
+const schema = require("./schemas/urlSchema");
 
 module.exports = class UrlManager extends Manager {
   static async create(url) {
-    const params = { urls: url };
-    return await this.executeQuery(schema, this.querys.insert, [params]);
+    return await this.executeQuery(schema, this.querys.insert, [url]);
   }
-  static async find(id) {
-    return await this.executeQuery(schema, this.querys.find, [{ urls: id }]);
+  static async find({ id }) {
+    return await this.executeQuery(schema, this.querys.find, [{ _id: id }]);
+  }
+  static async findValue(value) {
+    return await this.executeQuery(schema, this.querys.find, [value]);
   }
   static async findAll() {
     return await this.executeQuery(schema, this.querys.findAll);

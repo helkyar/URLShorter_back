@@ -4,10 +4,9 @@ const router = require("express").Router();
 router.use("/session", require("./login"));
 
 // JWT middleware auth ______________________________
-router.use(require("../middlewares/token"));
+// router.use(require("../middlewares/token"));
 
 // Other routes _____________________________________
-router.use("/template", require("./template"));
-router.use("/", require("./redirect"));
+router.use("/urls", require("./urls"));
 
 module.exports = router;
