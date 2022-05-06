@@ -2,20 +2,22 @@ const UrlManager = require(`../../${process.env.MANAGER}/UrlManager`);
 
 async function postRedirect(req, res) {
   console.log("Redirect controller post");
-  const { url, user } = req.body;
+  let { url, user } = req.body;
+
+  console.log(url, user);
+
+  url = url.split(/https?:\/\//).filter((e) => e !== "")[0];
 
   let response;
   const reapeatedUrl = await UrlManager.findValue({ url });
 
-  if (reapeatedUrl && (!reapeatedUrl[0] || reapeatedUrl.user)) {
+  if (reapeatedUrl && (!reapeatedUrl[0] || reapeatedUrl[0].user)) {
     let urlid;
     let reapeatedId;
     do {
       urlid = Math.floor(Math.random() * process.env.MAX_URLS_LENGTH);
       urlid = urlid.toString(16);
       reapeatedId = await UrlManager.findValue({ urlid });
-
-      console.log(reapeatedId[0].user);
     } while (reapeatedId[0]);
 
     //(!) Validation
@@ -24,6 +26,7 @@ async function postRedirect(req, res) {
     response = reapeatedUrl;
   }
 
+  console.log(response);
   //(!) Universal manager -> model response
   response !== null
     ? res.status(200).json(response[0])
