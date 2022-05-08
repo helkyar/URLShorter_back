@@ -11,6 +11,10 @@ module.exports = class UrlManager extends Manager {
   static async findValue(value) {
     return await this.executeQuery(schema, this.querys.find, [value]);
   }
+
+  static async findAllOf(value) {
+    return await this.executeQuery(schema, this.querys.findAll, [value]);
+  }
   static async findAll() {
     return await this.executeQuery(schema, this.querys.findAll);
   }

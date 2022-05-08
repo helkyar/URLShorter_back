@@ -23,6 +23,7 @@ module.exports = class Manager {
   static async executeQuery(schema, query, params) {
     await this.connect();
     try {
+      console.log("PARAMS", params, query, schema);
       const result = await schema[query](...params);
       return [result];
     } catch (error) {
