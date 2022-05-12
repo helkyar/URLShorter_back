@@ -3,12 +3,15 @@ const UrlManager = require(`../../${process.env.MANAGER}/UrlManager`);
 async function postRedirect(req, res) {
   let { url, user } = req.body;
 
+  // Parse url_______________________________________
   url = url.split(/https?:\/\//).filter((e) => e !== "")[0];
   url = url.replace(/\s/g, "");
 
+  // Search url_______________________________________
   let response;
   const repeatedUrl = await UrlManager.findValue({ url });
 
+  // Generate id_______________________________________
   if (user || (repeatedUrl && (!repeatedUrl[0] || repeatedUrl[0].user))) {
     let urlid;
     let repeatedId;
