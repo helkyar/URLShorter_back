@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 const UserManager = require(`../../${process.env.MANAGER}/UserManager`);
 
 async function checkLogin(req, res) {
-  console.log("Login controller");
   const credentials = req.body;
-  // Incorrect login___________________________________
+
+  // Validate login___________________________________
   if (!credentials) {
     res.status(400).json({ error: "nice try" });
   }
