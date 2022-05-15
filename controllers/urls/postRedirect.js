@@ -15,16 +15,33 @@ async function postRedirect(req, res) {
   if (user || (repeatedUrl && (!repeatedUrl[0] || repeatedUrl[0].user))) {
     let urlid;
     let repeatedId;
-    do {
-      urlid = Math.floor(Math.random() * process.env.MAX_URLS_LENGTH);
-      urlid = urlid.toString(16);
-      repeatedId = await UrlManager.findValue({ urlid });
-    } while (repeatedId[0]);
+    try {
+      do {
+        urlid = Math.floor(Math.random() * process.env.MAX_URLS_LENGTH);
+        urlid = urlid.toString(16);
+        repeatedId = await UrlManager.findValue({ urlid });
+      } while (repeatedId[0]);
+    } catch (e) {
+      console.log("ERRROR IN WHILE: ", e);
+    }
 
     response = await UrlManager.create({ urlid, url, user });
   } else {
     response = repeatedUrl;
   }
+  console.log(
+    ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::."
+  );
+  console.log(
+    ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::."
+  );
+  console.log(response);
+  console.log(
+    ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::."
+  );
+  console.log(
+    ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::."
+  );
 
   response && response[0]
     ? res.status(200).json(response[0])
