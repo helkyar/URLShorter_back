@@ -23,22 +23,7 @@ module.exports = class Manager {
   static async executeQuery(schema, query, params) {
     await this.connect();
     try {
-      console.log(
-        "=======================================================================================0"
-      );
-      console.log(
-        "=======================================================================================0"
-      );
-      console.log(query, params);
-
       const result = await schema[query](...params);
-      console.log(result);
-      console.log(
-        "=======================================================================================0"
-      );
-      console.log(
-        "=======================================================================================0"
-      );
       return [result];
     } catch (error) {
       console.log("QUERY ERROR: ", query, error);
