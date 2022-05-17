@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { schemaRegister } = require("../middlewares/validations");
+const { schemaRegister } = require("../../middlewares/validations");
 const UserManager = require(`../../${process.env.MANAGER}/UserManager`);
 
 async function register(req, res) {

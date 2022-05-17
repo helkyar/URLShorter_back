@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { schemaLogin } = require("../middlewares/validations");
+const { schemaLogin } = require("../../middlewares/validations");
 const UserManager = require(`../../${process.env.MANAGER}/UserManager`);
 
 async function checkLogin(req, res) {
@@ -8,7 +8,7 @@ async function checkLogin(req, res) {
 
   // Validation______________________________________
   const { error } = schemaLogin.validate(req.body);
-
+  console.log(error);
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }
